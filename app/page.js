@@ -3,11 +3,7 @@
 import { useEffect, useState } from 'react';
 import './globals.css';
 
-
 const App = () => {
-  let [value, setInputValue] = useState(25);
-  let [breakValue, setBreakValue] = useState(5);
-
   let [workDuration, setWorkDuration] = useState(25*60);
 
   let [durationChange, setDurationChange] = useState(25);
@@ -27,7 +23,15 @@ const App = () => {
   let [count, setCount] = useState(0);
 
   let [alertText, setAlertText] = useState("work duration is over");
-  let [textTime, setTextTime] = useState("Work-Time")
+
+  let [textTime, setTextTime] = useState("Work-Time");
+
+  let [inputWorkDisabled, setInputWorkDisabled] = useState(false);
+
+  // let [inputBreakkDisabled, setInputBreakDisabled] = useState(true);
+
+
+
 
   function Timer(seconds){
     const minutes = Math.floor(seconds / 60);
@@ -44,11 +48,10 @@ const App = () => {
     else{
       setWorkDuration(durationChange*60);
     }
-    // setWorkDuration(durationChange*60);
-
     setFlag(false);
     setDisable(false);
     setResetDisablity(false);
+
   }
 
 
@@ -96,6 +99,8 @@ const App = () => {
     setDisable(true);
     setStopDisablity(false);
     setResetDisablity(false);
+    setInputWorkDisabled(true);
+
   }
 
   function Stop(){
@@ -104,6 +109,8 @@ const App = () => {
     setStopDisablity(true);
     setDisable(false);
     setResetDisablity(false);
+    setInputWorkDisabled(false);
+
   }
 
 
@@ -112,8 +119,8 @@ const App = () => {
     setWorkDuration(25*60);
     setDisable(false);
     setResetDisablity(true);
+    setInputWorkDisabled(false);
   }
-
   
 
 return (
@@ -131,8 +138,8 @@ return (
     </div>
 
     <form>
-      <input onChange={(e) => setDurationChange(e.target.value)} value={durationChange<0?"":durationChange}  data-testid='work-duration' type='number' required placeholder='work duration'></input>
-      <input onChange={(e)=> setBreakChange(e.target.value)} value={breakChange<0?"":breakChange}  type='number' data-testid='break-duration' placehonnlder='break duration' required></input>
+      <input disabled = {inputWorkDisabled} onChange={(e) => setDurationChange(e.target.value)} value={durationChange<0?"":durationChange}  data-testid='work-duration' type='number' required placeholder='work duration'></input>
+      <input disabled= {inputWorkDisabled} onChange={(e)=> setBreakChange(e.target.value)} value={breakChange<0?"":breakChange}  type='number' data-testid='break-duration' placehonnlder='break duration' required></input>
       <button type='submit' onClick={handleCLick}>set</button>
     </form>
   </div>
