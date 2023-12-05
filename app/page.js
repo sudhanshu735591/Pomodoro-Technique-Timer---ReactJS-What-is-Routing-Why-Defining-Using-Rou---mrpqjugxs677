@@ -36,7 +36,12 @@ const App = () => {
 
 
   function handleCLick(){
-    setWorkDuration(durationChange);
+    if(durationChange==0){
+      setWorkDuration(25*60)
+    }
+    else{
+      setWorkDuration(durationChange*60);
+    }
     setFlag(false);
     setDisable(false);
     setResetDisablity(false);
@@ -58,13 +63,13 @@ const App = () => {
           console.log(count);
 
           if(count%2==0){
-            setWorkDuration(breakChange);
+            setWorkDuration(breakChange*60);
             setAlertText("break duration is over");
             setTextTime("Break-Time");
           }
 
           else{
-            setWorkDuration(durationChange);
+            setWorkDuration(durationChange*60);
             setAlertText("work duration is over");
             setTextTime("Work-Time");
 
@@ -90,7 +95,7 @@ const App = () => {
   }
 
   function Stop(){
-    console.log(Timer(workDuration));
+    console.log(Timer(workDuration*60));
     setFlag(false);
     setStopDisablity(true);
     setDisable(false);
@@ -99,10 +104,13 @@ const App = () => {
 
 
   function handleReset(){
+    setFlag(false);
     setWorkDuration(25*60);
     setDisable(false);
     setResetDisablity(true);
   }
+
+  
 
 return (
   <div id="main">
