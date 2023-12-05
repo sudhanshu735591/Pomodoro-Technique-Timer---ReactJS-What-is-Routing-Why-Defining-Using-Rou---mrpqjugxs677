@@ -5,15 +5,16 @@ import './globals.css';
 
 
 const App = () => {
-
+  let [value, setInputValue] = useState(25);
+  let [breakValue, setBreakValue] = useState(5);
 
   let [workDuration, setWorkDuration] = useState(25*60);
 
-  let [durationChange, setDurationChange] = useState(0);
+  let [durationChange, setDurationChange] = useState(25);
 
   let [start, setStart] = useState(durationChange);
 
-  let [breakChange, setBreakChange] = useState(0);
+  let [breakChange, setBreakChange] = useState(5);
 
   let [flag, setFlag] = useState(false);
 
@@ -35,13 +36,16 @@ const App = () => {
   }
 
 
-  function handleCLick(){
+  function handleCLick(e){
+    e.preventDefault()
     if(durationChange==0){
       setWorkDuration(25*60)
     }
     else{
       setWorkDuration(durationChange*60);
     }
+    // setWorkDuration(durationChange*60);
+
     setFlag(false);
     setDisable(false);
     setResetDisablity(false);
@@ -126,11 +130,11 @@ return (
       <button disabled= {resetDisability} onClick={handleReset} data-testid='reset-btn'>Reset</button>
     </div>
 
-    <div>
-      <input onChange={(e) => setDurationChange(e.target.value)} min="0" data-testid='work-duration' type='number' required placeholder='work duration'></input>
-      <input onChange={(e)=> setBreakChange(e.target.value)} min="0" type='number' data-testid='break-duration' placeholder='break duration' required></input>
-      <button onClick={handleCLick}>set</button>
-    </div>
+    <form>
+      <input onChange={(e) => setDurationChange(e.target.value)} value={durationChange<0?"":durationChange}  data-testid='work-duration' type='number' required placeholder='work duration'></input>
+      <input onChange={(e)=> setBreakChange(e.target.value)} value={breakChange<0?"":breakChange}  type='number' data-testid='break-duration' placehonnlder='break duration' required></input>
+      <button type='submit' onClick={handleCLick}>set</button>
+    </form>
   </div>
   )
 }
