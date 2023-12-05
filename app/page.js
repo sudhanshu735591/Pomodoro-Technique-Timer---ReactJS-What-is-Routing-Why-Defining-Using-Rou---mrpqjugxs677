@@ -36,7 +36,7 @@ const App = () => {
 
 
   function handleCLick(){
-    setWorkDuration(durationChange*60);
+    setWorkDuration(durationChange);
     setFlag(false);
     setDisable(false);
     setResetDisablity(false);
@@ -50,7 +50,7 @@ const App = () => {
     if(flag){
       timer = setTimeout(() => {
 
-        if (workDuration < 1) {
+        if (workDuration <=1) {
           alert(alertText);
 
           setCount(count+1);
@@ -58,13 +58,13 @@ const App = () => {
           console.log(count);
 
           if(count%2==0){
-            setWorkDuration(breakChange*60);
+            setWorkDuration(breakChange);
             setAlertText("break duration is over");
             setTextTime("Break-Time");
           }
 
           else{
-            setWorkDuration(durationChange*60);
+            setWorkDuration(durationChange);
             setAlertText("work duration is over");
             setTextTime("Work-Time");
 
