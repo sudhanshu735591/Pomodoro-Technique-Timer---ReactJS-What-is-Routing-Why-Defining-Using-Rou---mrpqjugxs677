@@ -127,8 +127,8 @@ return (
     </div>
 
     <div>
-      <input onChange={(e) => setDurationChange(e.target.value)} type='number' required placeholder='work duration'></input>
-      <input onChange={(e)=> setBreakChange(e.target.value)} type='number' placeholder='break duration' required></input>
+      <input onChange={(e) => setDurationChange(e.target.value)} min="0" data-testid='work-duration' type='number' required placeholder='work duration'></input>
+      <input onChange={(e)=> setBreakChange(e.target.value)} min="0" type='number' data-testid='break-duration' placeholder='break duration' required></input>
       <button onClick={handleCLick}>set</button>
     </div>
   </div>
