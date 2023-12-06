@@ -101,6 +101,7 @@ const App = () => {
     setDisable(false);
     setResetDisablity(true);
     setInputWorkDisabled("false");
+    setStopDisablity(true);
   }
 
 
