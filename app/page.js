@@ -102,6 +102,7 @@ const App = () => {
     setResetDisablity(true);
     setInputWorkDisabled("false");
     setStopDisablity(true);
+    setSetButton("false");
   }
 
 
