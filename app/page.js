@@ -105,6 +105,8 @@ const App = () => {
     setInputWorkDisabled("false");
     setStopDisablity(true);
     setSetButton("false");
+    setDurationChange(25);
+    setBreakChange(5);
   }
 
 
