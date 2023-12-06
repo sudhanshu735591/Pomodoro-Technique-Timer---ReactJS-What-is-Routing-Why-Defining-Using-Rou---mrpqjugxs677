@@ -25,7 +25,12 @@ const App = () => {
   function handleClick(e){
     e.preventDefault()
     if(durationChange==0){
-      setWorkDuration(25*60)
+      setWorkDuration(25*60);
+    }
+
+    if(durationChange==0 && breakChange==0){
+      setDurationChange(25);
+      setBreakChange(5);
     }
     else{
       setWorkDuration(durationChange*60);
@@ -113,7 +118,7 @@ return (
 
     <form>
       <input disabled = {inputWorkDisabled==="false"?false:true} onChange={(e) => setDurationChange(e.target.value)} value={durationChange<0?"":durationChange}  data-testid='work-duration' type='number' required placeholder='work duration'></input>
-      <input disabled= {inputWorkDisabled==="false"?false:true} onChange={(e)=> setBreakChange(e.target.value)} value={breakChange<0?"":breakChange}  type='number' data-testid='break-duration' placehonnlder='break duration' required></input>
+      <input disabled= {inputWorkDisabled==="false"?false:true} onChange={(e)=> setBreakChange(e.target.value)} value={breakChange<0?"":breakChange}  type='number' data-testid='break-duration' placeholder='break duration' required></input>
       <button data-testid='set-btn' type='submit' onClick={handleClick}>set</button>
     </form>
   </div>
