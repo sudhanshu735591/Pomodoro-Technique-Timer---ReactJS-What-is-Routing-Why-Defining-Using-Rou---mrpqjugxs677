@@ -92,6 +92,8 @@ const App = () => {
     setDisable(false);
     setResetDisablity(false);
     setInputWorkDisabled("false");
+    setSetButton("false");
+
   }
 
 
