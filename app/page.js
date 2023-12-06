@@ -5,30 +5,16 @@ import './globals.css';
 
 const App = () => {
   let [workDuration, setWorkDuration] = useState(25*60);
-
   let [durationChange, setDurationChange] = useState(25);
-
   let [breakChange, setBreakChange] = useState(5);
-
   let [flag, setFlag] = useState(false);
-
   let [disabled, setDisable] = useState(false);
-
-  let[stopDisability, setStopDisablity] = useState(true);
-
+  let [stopDisability, setStopDisablity] = useState(true);
   let [resetDisability, setResetDisablity] = useState(true);
-
   let [count, setCount] = useState(0);
-
   let [alertText, setAlertText] = useState("work duration is over");
-
   let [textTime, setTextTime] = useState("Work-Time");
-
   let [inputWorkDisabled, setInputWorkDisabled] = useState("false");
-
-
-
-
 
   function Timer(seconds){
     const minutes = Math.floor(seconds / 60);
@@ -36,8 +22,7 @@ const App = () => {
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
   }
 
-
-  function handleCLick(e){
+  function handleClick(e){
     e.preventDefault()
     if(durationChange==0){
       setWorkDuration(25*60)
@@ -48,23 +33,18 @@ const App = () => {
     setFlag(false);
     setDisable(false);
     setResetDisablity(false);
-
   }
-
 
 
   useEffect(() => {
     let timer;
-    
+
     if(flag){
       timer = setTimeout(() => {
 
         if (workDuration <=1) {
           alert(alertText);
-
           setCount(count+1);
-
-          console.log(count);
 
           if(count%2==0){
             setWorkDuration(breakChange*60);
@@ -78,7 +58,6 @@ const App = () => {
             setTextTime("Work-Time");
 
           }
-
           return;   
         }
         
@@ -97,7 +76,6 @@ const App = () => {
     setStopDisablity(false);
     setResetDisablity(false);
     setInputWorkDisabled("true");
-
   }
 
   function Stop(){
@@ -107,7 +85,6 @@ const App = () => {
     setDisable(false);
     setResetDisablity(false);
     setInputWorkDisabled("false");
-
   }
 
 
@@ -118,7 +95,7 @@ const App = () => {
     setResetDisablity(true);
     setInputWorkDisabled("false");
   }
-  
+
 
 return (
   <div id="main">
@@ -137,11 +114,10 @@ return (
     <form>
       <input disabled = {inputWorkDisabled==="false"?false:true} onChange={(e) => setDurationChange(e.target.value)} value={durationChange<0?"":durationChange}  data-testid='work-duration' type='number' required placeholder='work duration'></input>
       <input disabled= {inputWorkDisabled==="false"?false:true} onChange={(e)=> setBreakChange(e.target.value)} value={breakChange<0?"":breakChange}  type='number' data-testid='break-duration' placehonnlder='break duration' required></input>
-      <button type='submit' onClick={handleCLick}>set</button>
+      <button data-testid='set-btn' type='submit' onClick={handleClick}>set</button>
     </form>
   </div>
   )
 }
-
 
 export default App;
